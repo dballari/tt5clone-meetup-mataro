@@ -1,0 +1,114 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "meta": {
+        "title": "Demo patrons",
+        "description": "Blueprint with demo content for the Mataró Meetup",
+        "author": "dballari",
+        "categories": ["Themes", "Block themes"]
+    },
+    "landingPage": "/",
+    "features": {
+        "networking": true
+    },
+    "preferredVersions": {
+        "php": "8.3",
+        "wp": "latest"
+    },
+    "login": true,
+    "steps": [
+        {
+			"step": "login"
+		},
+		{
+			"step": "wp-cli",
+			"command": "wp site empty --yes"
+		},
+        {
+            "step": "setSiteOptions",
+            "options": {
+                "blogname": "Demo patrons",
+                "blogdescription": "Blueprint with demo content for the Mataró Meetup",
+                "posts_per_page": "8"
+            }
+        },
+        {
+            "step": "updateUserMeta",
+            "meta": {
+            	"admin_color": "ectoplasm"
+            },
+            "userId": 1
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "url",
+                "url": "https://github-proxy.com/proxy/?repo=dballari/sahmi"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "wordpress.org/plugins",
+                "slug": "create-block-theme"
+            },
+            "options": {
+                "activate": false
+            }
+        },
+        {
+            "step": "installPlugin",
+            "pluginData": {
+                "resource": "wordpress.org/plugins",
+                "slug": "otter-blocks"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "installTheme",
+            "themeData": {
+                "resource": "wordpress.org/themes",
+                "slug": "dualtone"
+            },
+            "options": {
+                "activate": false,
+                "importStarterContent": false
+            }
+        },
+        {
+            "step": "installTheme",
+            "themeData": {
+                "resource": "url",
+                "url": "https://github-proxy.com/proxy/?repo=dballari/tt5clone-meetup-mataro&branch=main&directory=tt5clone"
+            },
+            "options": {
+                "activate": true
+            }
+        },
+        {
+            "step": "installTheme",
+            "themeData": {
+                "resource": "url",
+                "url": "https://github-proxy.com/proxy/?repo=dballari/tt5clone-meetup-mataro&branch=main&directory=blank-theme"
+            },
+            "options": {
+                "activate": false
+            }
+        },
+        {
+            "step": "runPHP",
+            "code": "<?php require_once 'wordpress/wp-load.php';global $wp_rewrite; $wp_rewrite->set_permalink_structure('/%postname%/'); update_option( 'rewrite_rules', FALSE ); $wp_rewrite->flush_rules( true );?>"
+        },
+        {
+            "step": "importWxr",
+            "file": {
+                "resource": "url",
+                "url": "https://raw.githubusercontent.com/dballari/tt5clone-meetup-mataro/main/blueprints/tt5clone-demo/demopatrons.WordPress.2025-01-24.xml"
+            }
+        }
+    ]
+}
