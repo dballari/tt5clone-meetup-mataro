@@ -4,7 +4,7 @@ This repo has been used to explain and demonstrate all types of patterns availab
 
 Demo content has been taken from the [WordPress blueprints repo](https://github.com/WordPress/blueprints/tree/trunk/blueprints/tt5-demo).
 
-The repo includes the xml content with user patterns added to demostrate some functionality like the overrides in synced patterns.
+The repo includes the xml content with user patterns added to demostrate Synced patterns with overrides functionality.
 
 
 ## See demo in action in WordPress Playground
